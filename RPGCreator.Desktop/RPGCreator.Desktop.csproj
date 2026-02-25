@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <!--If you are willing to use Windows/MacOS native APIs you will need to create 3 projects.
+    One for Windows with net8.0-windows TFM, one for MacOS with net8.0-macos and one with net8.0 TFM for Linux.-->
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <LangVersion>14</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia.Desktop" Version="11.3.11" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RPGCreator.Core\RPGCreator.Core.csproj" />
+    <ProjectReference Include="..\RPGCreator.UI\RPGCreator.UI.csproj" />
+  </ItemGroup>
+    <Target Name="CopyUIAssets" AfterTargets="Build">
+        <ItemGroup>
+            <UIAssets Include="..\RPGCreator.UI\Assets\**\*.*" />
+        </ItemGroup>
+
+        <Copy SourceFiles="@(UIAssets)"
+              DestinationFolder="$(OutputPath)Assets\%(RecursiveDir)"
+              SkipUnchangedFiles="true" />
+    </Target>
+
+    <Target Name="CopyPlayerAssets" AfterTargets="Build">
+        <ItemGroup>
+            <ModuleAssets Include="..\RPGCreator.UI\Assets\Modules\**\*.*" />
+        </ItemGroup>
+
+        <Copy SourceFiles="@(ModuleAssets)"
+              DestinationFolder="$(OutputPath)..\..\..\..\RPGCreator.Player\bin\Debug\net9.0\Modules\%(RecursiveDir)"
+              SkipUnchangedFiles="true" />
+    </Target>
+
+</Project>
