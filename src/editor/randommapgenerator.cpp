@@ -18,6 +18,7 @@
 
 #include <QDateTime>
 #include <QMessageBox>
+#include <QPushButton>
 #include <cstdio>
 #include <cstdlib>
 #include "mapview.h"

@@ -59,6 +59,9 @@ void CommonEvent::saveToStorageFile(StorageFile &storageFile)
 
 XMLNode CommonEvent::getCommonEventNode()
 {
+	XMLNode node = XMLNode::createXMLTopNode("event");
+	node.addAttribute("name", name.toLocal8Bit().data());
+	return node;
 }
 
 QString CommonEvent::getName()
@@ -73,4 +76,5 @@ void CommonEvent::setName(QString value)
 
 bool CommonEvent::tryLoad(XMLNode CommonEventNode)
 {
+	return !CommonEventNode.isEmpty();
 }

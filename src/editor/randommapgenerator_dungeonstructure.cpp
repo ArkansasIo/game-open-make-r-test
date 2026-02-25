@@ -18,6 +18,7 @@
 
 #include <cstdio>
 #include <cstdlib>
+#include <vector>
 #include "projectdata.h"
 #include "projectdata_map.h"
 #include "projectdata_tileset.h"
@@ -481,8 +482,8 @@ void RandomMapGenerator_DungeonStructure::generateDungeonStructure(unsigned long
 				if (randomNumber == 0)
 				{
 					max = 0;
-					bool spaceAvailable[roomWidth - 2];
-					for (int i = 0; i < roomWidth - 2; ++i)
+					std::vector<bool> spaceAvailable((roomWidth > 2) ? roomWidth - 2 : 0, false);
+					for (int i = 0; i < static_cast<int>(spaceAvailable.size()); ++i)
 					{
 						spaceAvailable[i] = isSpaceAvailable(point.x - i - 1, point.y - roomHeight, roomWidth, roomHeight);
 						if (spaceAvailable[i])
@@ -491,7 +492,7 @@ void RandomMapGenerator_DungeonStructure::generateDungeonStructure(unsigned long
 					if (max > 0)
 					{
 						randomNumber = (int)(numberGenerator.getRandomNumber(1000ul, (unsigned long)(max * 1000)) / 1000ul);
-						for (int i = 0; i < roomWidth - 2 && randomNumber > 0; ++i)
+						for (int i = 0; i < static_cast<int>(spaceAvailable.size()) && randomNumber > 0; ++i)
 						{
 							if (spaceAvailable[i])
 							{
@@ -521,8 +522,8 @@ void RandomMapGenerator_DungeonStructure::generateDungeonStructure(unsigned long
 				if (randomNumber == 0)
 				{
 					max = 0;
-					bool spaceAvailable[roomWidth - 2];
-					for (int i = 0; i < roomWidth - 2; ++i)
+					std::vector<bool> spaceAvailable((roomWidth > 2) ? roomWidth - 2 : 0, false);
+					for (int i = 0; i < static_cast<int>(spaceAvailable.size()); ++i)
 					{
 						spaceAvailable[i] = isSpaceAvailable(point.x - i - 1, point.y + 1, roomWidth, roomHeight);
 						if (spaceAvailable[i])
@@ -531,7 +532,7 @@ void RandomMapGenerator_DungeonStructure::generateDungeonStructure(unsigned long
 					if (max > 0)
 					{
 						randomNumber = (int)(numberGenerator.getRandomNumber(1000ul, (unsigned long)(max * 1000)) / 1000ul);
-						for (int i = 0; i < roomWidth - 2 && randomNumber > 0; ++i)
+						for (int i = 0; i < static_cast<int>(spaceAvailable.size()) && randomNumber > 0; ++i)
 						{
 							if (spaceAvailable[i])
 							{
@@ -561,8 +562,8 @@ void RandomMapGenerator_DungeonStructure::generateDungeonStructure(unsigned long
 				if (randomNumber == 0)
 				{
 					max = 0;
-					bool spaceAvailable[roomHeight - 2];
-					for (int i = 0; i < roomHeight - 2; ++i)
+					std::vector<bool> spaceAvailable((roomHeight > 2) ? roomHeight - 2 : 0, false);
+					for (int i = 0; i < static_cast<int>(spaceAvailable.size()); ++i)
 					{
 						spaceAvailable[i] = isSpaceAvailable(point.x + 1, point.y - i - 1, roomWidth, roomHeight);
 						if (spaceAvailable[i])
@@ -571,7 +572,7 @@ void RandomMapGenerator_DungeonStructure::generateDungeonStructure(unsigned long
 					if (max > 0)
 					{
 						randomNumber = (int)(numberGenerator.getRandomNumber(1000ul, (unsigned long)(max * 1000)) / 1000ul);
-						for (int i = 0; i < roomHeight - 2 && randomNumber > 0; ++i)
+						for (int i = 0; i < static_cast<int>(spaceAvailable.size()) && randomNumber > 0; ++i)
 						{
 							if (spaceAvailable[i])
 							{
@@ -601,8 +602,8 @@ void RandomMapGenerator_DungeonStructure::generateDungeonStructure(unsigned long
 				if (randomNumber == 0)
 				{
 					max = 0;
-					bool spaceAvailable[roomHeight - 2];
-					for (int i = 0; i < roomHeight - 2; ++i)
+					std::vector<bool> spaceAvailable((roomHeight > 2) ? roomHeight - 2 : 0, false);
+					for (int i = 0; i < static_cast<int>(spaceAvailable.size()); ++i)
 					{
 						spaceAvailable[i] = isSpaceAvailable(point.x - roomWidth, point.y - i - 1, roomWidth, roomHeight);
 						if (spaceAvailable[i])
@@ -611,7 +612,7 @@ void RandomMapGenerator_DungeonStructure::generateDungeonStructure(unsigned long
 					if (max > 0)
 					{
 						randomNumber = (int)(numberGenerator.getRandomNumber(1000ul, (unsigned long)(max * 1000)) / 1000ul);
-						for (int i = 0; i < roomHeight - 2 && randomNumber > 0; ++i)
+						for (int i = 0; i < static_cast<int>(spaceAvailable.size()) && randomNumber > 0; ++i)
 						{
 							if (spaceAvailable[i])
 							{

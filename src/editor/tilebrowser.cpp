@@ -19,6 +19,7 @@
 #include <QMenu>
 #include <QFileInfoList>
 #include <QDir>
+#include <QPushButton>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -115,7 +116,7 @@ void TileBrowser::on_tileList_itemSelectionChanged()
 void TileBrowser::on_tileList_customContextMenuRequested(const QPoint &pos)
 {
 	tempDir = tileList->itemAt(pos);
-	if (tempDir and tempDir->text(1) == "DIR")
+	if (tempDir && tempDir->text(1) == "DIR")
 	{
 		QMenu *popupMenu = new QMenu(this);
 		popupMenu->addAction(aSelectAllImages);
@@ -175,11 +176,11 @@ void TileBrowser::setupDirectoryTree(QTreeWidgetItem *directoryItem)
 				newFileItem->setText(1, "BMP");
 			else if (fileType == "gif")
 				newFileItem->setText(1, "GIF");
-			else if (fileType == "jpg" or fileType == "jpeg")
+			else if (fileType == "jpg" || fileType == "jpeg")
 				newFileItem->setText(1, "JPEG");
 			else if (fileType == "png")
 				newFileItem->setText(1, "PNG");
-			else if (fileType == "pbm" or fileType == "pgm" or fileType == "ppm")
+			else if (fileType == "pbm" || fileType == "pgm" || fileType == "ppm")
 				newFileItem->setText(1, "PNM");
 			else if (fileType == "xpm")
 				newFileItem->setText(1, "XPM");
@@ -245,7 +246,7 @@ void TileBrowser::selectTiles(QTreeWidgetItem *directory, bool recursive)
 	for (int i = 0; i < numchildren; ++i)
 	{
 		QTreeWidgetItem *item = directory->child(i);
-		if (item and item->text(1) != "DIR")
+		if (item && item->text(1) != "DIR")
 			item->setSelected(true);
 		else if (recursive)
 			selectTiles(item, true);

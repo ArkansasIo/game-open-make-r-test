@@ -1,22 +1,18 @@
 TEMPLATE =  app
 TARGET = OpenRPGMaker
+QT += core gui widgets xml printsupport
 DEPENDPATH += .
 INCLUDEPATH += ./
 INCLUDEPATH += ./projectdata
 INCLUDEPATH += ./ui_files
 INCLUDEPATH += ../../fmodex/inc
-DEFINES += VERSION=\\\"0.2.3\\\" TODO_LEVEL=0 COMPILING_EDITOR FILE_FORMAT_VERSION=4
+DEFINES += VERSION=\\\"0.2.3\\\" TODO_LEVEL=0 COMPILING_EDITOR FILE_FORMAT_VERSION=4 XML_NO_UNICODE
+DEFINES += setResizeMode=setSectionResizeMode
 # CONFIG += debug
-LIBS += -L../../fmodex/lib
 #Later these need to be moved into conditional based on OS
 DEFINES += LIB_PREFIX=\\\"lib\\\" LIB_SUFFIX=\\\"so\\\"
-*-64 {
-	DEFINES += ARCH_TYPE=\\\"64\\\"
-	LIBS += -lfmodex64
-} else {
-	DEFINES += ARCH_TYPE=\\\"32\\\"
-	LIBS += -lfmodex
-}
+DEFINES += ARCH_TYPE=\\\"64\\\"
+LIBS += -ladvapi32
 DESTDIR = ../../
 
 # Input
@@ -258,7 +254,7 @@ SOURCES += animationautocomplete.cpp \
            animationcellproperties.cpp \
            animationmasscopyclear.cpp \
            animationmassmodify.cpp \
-           audiomanager.cpp \
+           audiomanager_stub.cpp \
            bargraph.cpp \
            battleanimationpreview.cpp \
            battlespriteimagebrowser.cpp \
@@ -621,7 +617,6 @@ FORMS +=   about.ui \
 					 getpartymemberdialog.ui \
 					 getrandomnumberdialog.ui \
 					 globalanimationpreview.ui \
-					 helpmanual.ui \
 					 imagebrowser.ui \
 					 importer.ui \
 					 loading.ui \

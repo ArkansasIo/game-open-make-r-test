@@ -22,6 +22,8 @@
 #include <QMouseEvent>
 #include <QApplication>
 #include <QBitmap>
+#include <QDrag>
+#include <QMimeData>
 #include "menunavigationlist.h"
 #include "projectdata_font.h"
 

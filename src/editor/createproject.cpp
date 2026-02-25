@@ -17,6 +17,7 @@
  ****************************************************************************/
 
 #include <QFileDialog>
+#include <QPushButton>
 #include "createproject.h"
 #include "projectdata.h"
 

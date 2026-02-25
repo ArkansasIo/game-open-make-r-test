@@ -22,22 +22,59 @@
 
 MenuTableItem::MenuTableItem(MenuItemTable *parentTable)
 {
+	table = parentTable;
+	objectName = "";
+	text = "";
+	iconLocation = "";
+	enabled = true;
+	updatePixmap();
 }
 
 MenuTableItem::MenuTableItem(MenuItemTable *parentTable, QString text)
 {
+	table = parentTable;
+	objectName = "";
+	this->text = text;
+	iconLocation = "";
+	enabled = true;
+	updatePixmap();
 }
 
 MenuTableItem::MenuTableItem(MenuItemTable *parentTable, QString iconLocation, QString text)
 {
+	table = parentTable;
+	objectName = "";
+	this->text = text;
+	this->iconLocation = iconLocation;
+	enabled = true;
+	updatePixmap();
 }
 
 MenuTableItem::MenuTableItem(MenuItemTable *parentTable, XMLNode ItemNode)
 {
+	table = parentTable;
+	objectName = ItemNode.getAttribute("objectName");
+	this->text = ItemNode.getAttribute("text");
+	this->iconLocation = ItemNode.getAttribute("iconLocation");
+	enabled = (QString(ItemNode.getAttribute("enabled")) != "false");
+	updatePixmap();
 }
 
 MenuTableItem::MenuTableItem(MenuItemTable *parentTable, StorageFile &storageFile)
 {
+	char *tempString;
+	table = parentTable;
+	tempString = storageFile.getString();
+	objectName = tempString;
+	delete[] tempString;
+	tempString = storageFile.getString();
+	text = tempString;
+	delete[] tempString;
+	tempString = storageFile.getString();
+	iconLocation = tempString;
+	delete[] tempString;
+	enabled = storageFile.getBool();
+	updatePixmap();
 }
 
 MenuTableItem::~MenuTableItem()
@@ -46,6 +83,12 @@ MenuTableItem::~MenuTableItem()
 
 XMLNode MenuTableItem::getItemNode()
 {
+	XMLNode itemNode = XMLNode::createXMLTopNode("item");
+	itemNode.addAttribute("objectName", objectName.toUtf8().data());
+	itemNode.addAttribute("text", text.toUtf8().data());
+	itemNode.addAttribute("iconLocation", iconLocation.toUtf8().data());
+	itemNode.addAttribute("enabled", enabled ? "true":"false");
+	return itemNode;
 }
 
 void MenuTableItem::saveToStorageFile(StorageFile &storageFile)
@@ -103,4 +146,8 @@ bool MenuTableItem::tryLoad(XMLNode ItemNode)
 
 void MenuTableItem::updatePixmap()
 {
+	if (iconLocation.isEmpty())
+		pixmap = QPixmap();
+	else
+		pixmap = QPixmap(iconLocation);
 }

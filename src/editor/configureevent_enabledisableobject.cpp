@@ -17,6 +17,7 @@
  ****************************************************************************/
 
 #include "configureevent_enabledisableobject.h"
+#include <QPushButton>
 #include "projectdata.h"
 #include "projectdata_mainmenulayout.h"
 #include "projectdata_popupmenulayout.h"

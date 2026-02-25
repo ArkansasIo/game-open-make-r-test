@@ -75,6 +75,7 @@ class ProjectData;
 class MainWindow;
 class HelpManual;
 class QDir;
+class QTreeWidgetItem;
 class AudioManager;
 class ProcessLogDialog;
 

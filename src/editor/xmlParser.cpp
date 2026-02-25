@@ -341,7 +341,7 @@ XMLNode XMLNode::openFileHelper(const char *filename, XMLCSTR tag)
 	if (pResults.error != eXMLErrorNone)
 	{
         // create message
-		char *s1="",*s3=""; XMLCSTR s2=_T("");
+		const char *s1="",*s3=""; XMLCSTR s2=_T("");
 		if (pResults.error==eXMLErrorFirstTagNotFound) { s1="First Tag should be '"; s2=tag; s3="'.\n"; }
 		sprintf(parseError,
 #ifdef _XMLUNICODE
@@ -2568,4 +2568,3 @@ char *base64Decode(XMLCSTR data,unsigned int *outlen, XMLError *xe)
     if(!base64Decode(data,buf,len,xe)){free(buf);return NULL;}
     return buf;
 }
-

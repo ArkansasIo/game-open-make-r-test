@@ -17,6 +17,7 @@
  ****************************************************************************/
 
 #include "projectdata.h"
+#include <QPushButton>
 #include "selectvehicle.h"
 
 SelectVehicle::SelectVehicle(QWidget *parent) : QDialog(parent)

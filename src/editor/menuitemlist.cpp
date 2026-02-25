@@ -25,6 +25,7 @@
 #include <QByteArray>
 #include <QPixmap>
 #include <QBitmap>
+#include <QApplication>
 #include "menuframe.h"
 #include "menuimage.h"
 #include "menuitemlist.h"

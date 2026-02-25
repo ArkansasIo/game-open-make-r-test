@@ -20,6 +20,7 @@
 #define CREATEPROJECT_H
 
 #include <QDialog>
+#include <QRegExpValidator>
 #include "ui_createproject.h"
 
 class CreateProject : public QDialog, public Ui::CreateProject

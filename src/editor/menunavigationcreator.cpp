@@ -28,6 +28,7 @@
 #include <QMouseEvent>
 #include <QScrollBar>
 #include <QApplication>
+#include <QMimeData>
 #include "menunavigationcreator.h"
 #include "projectdata.h"
 #include "projectdata_font.h"

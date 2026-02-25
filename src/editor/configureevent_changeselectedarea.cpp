@@ -17,6 +17,7 @@
  ****************************************************************************/
 
 #include "configureevent_changeselectedarea.h"
+#include <QPushButton>
 #include "menuobject.h"
 #include "projectdata.h"
 #include "projectdata_mainmenulayout.h"

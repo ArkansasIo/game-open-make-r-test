@@ -47,6 +47,15 @@
 
 #include <stdlib.h>
 
+#ifdef XML_NO_UNICODE
+#ifdef UNICODE
+#undef UNICODE
+#endif
+#ifdef _UNICODE
+#undef _UNICODE
+#endif
+#endif
+
 #ifdef WIN32
 #include <tchar.h>
 #else
@@ -54,7 +63,7 @@
                    // to have 'mbsrtowcs' for UNICODE version
 #endif
 
-#ifdef _UNICODE
+#if defined(_UNICODE) && !defined(XML_NO_UNICODE)
 // If you comment the next "define" line then the library will never "switch to" _UNICODE mode (16/32 bits per characters).
 // This is useful when you get error messages like:
 //    'XMLNode::openFileHelper' : cannot convert parameter 2 from 'const char [5]' to 'const wchar_t *'

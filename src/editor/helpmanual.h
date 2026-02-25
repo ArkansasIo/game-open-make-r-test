@@ -19,12 +19,9 @@
 #ifndef HELPMANUAL_H
 #define HELPMANUAL_H
 
-struct XMLNode;
-class QTreeWidgetItem;
+#include <QDialog>
 
-#include "ui_helpmanual.h"
-
-class HelpManual : public QDialog, public Ui::HelpManual
+class HelpManual : public QDialog
 {
 	Q_OBJECT
 	public:
@@ -32,17 +29,6 @@ class HelpManual : public QDialog, public Ui::HelpManual
 		~HelpManual();
 		void loadPage(QString file);
 		void loadIndex(QString index);
-	protected slots:
-		void on_twContents_itemClicked(QTreeWidgetItem *item);
-		void on_leIndexSearch_textChanged(QString text);
-		void on_lwIndexList_itemClicked(QListWidgetItem *item);
-		void on_webView_urlChanged();
-		void on_twContents_customContextMenuRequested();
-		void on_lwIndexList_customContextMenuRequested();
-	private:
-		void buildContentTree(QTreeWidgetItem *parent, XMLNode TreeNode);
-		QMap<QString, QString> indexList;
-		QString helpManualFolder;
 };
 
 #endif // HELPMANUAL_H

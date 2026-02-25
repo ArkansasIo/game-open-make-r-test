@@ -1,7 +1,7 @@
 #include <QCoreApplication>
 #include <QDateTime>
-#include <QDebug>
 #include <QStringList>
+#include <QTextStream>
 
 #include "battleengine.h"
 #include "eventcompiler.h"
@@ -54,6 +54,7 @@ static GameDatabase buildDemoDatabase()
 int main(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
+    QTextStream out(stdout);
 
     qsrand(static_cast<uint>(QDateTime::currentMSecsSinceEpoch() & 0xFFFFFFFF));
 
@@ -61,10 +62,10 @@ int main(int argc, char *argv[])
     QStringList issues = db.validate();
     if (!issues.isEmpty())
     {
-        qDebug() << "Database validation failed:";
+        out << "Database validation failed:\n";
         int i;
         for (i = 0; i < issues.size(); ++i)
-            qDebug() << " -" << issues[i];
+            out << " - " << issues[i] << "\n";
         return 1;
     }
 
@@ -90,7 +91,7 @@ int main(int argc, char *argv[])
     QList<EventCommand> compiledCommonEvent;
     if (!compiler.compileCommonEventXml(commonEventXml, &compiledCommonEvent, &compileWarnings))
     {
-        qDebug() << "Common event compile failed.";
+        out << "Common event compile failed.\n";
         return 2;
     }
     events.registerCommonEvent(1, compiledCommonEvent);
@@ -123,36 +124,37 @@ int main(int argc, char *argv[])
     QList<EventCommand> compiledMapEvent;
     if (!compiler.compileMapEventXml(mapEventXml, &compiledMapEvent, &compileWarnings))
     {
-        qDebug() << "Map event compile failed.";
+        out << "Map event compile failed.\n";
         return 3;
     }
     events.registerMapEvent(1, compiledMapEvent);
 
     if (!compileWarnings.isEmpty())
     {
-        qDebug() << "Compiler warnings:";
+        out << "Compiler warnings:\n";
         int w;
         for (w = 0; w < compileWarnings.size(); ++w)
-            qDebug() << " -" << compileWarnings[w];
+            out << " - " << compileWarnings[w] << "\n";
     }
 
     if (!events.runMapEvent(1))
     {
-        qDebug() << "Map event execution failed.";
+        out << "Map event execution failed.\n";
         return 4;
     }
 
     QStringList runtimeLog = events.flushLog();
     int i;
     for (i = 0; i < runtimeLog.size(); ++i)
-        qDebug() << runtimeLog[i];
+        out << runtimeLog[i] << "\n";
 
-    qDebug() << "Variable[1] (gold):" << state.getVariable(1);
-    qDebug() << "Variable[2] (potions):" << state.getVariable(2);
-    qDebug() << "Switch[1] (slime encounter seen):" << state.getSwitch(1);
-    qDebug() << "Map tile(5,5,0):" << map.tileId(5, 5, 0);
-    qDebug() << "Map region(5,5,0):" << map.regionId(5, 5, 0);
-    qDebug() << "Map blocked(5,5):" << map.isBlocked(5, 5);
+    out << "Variable[1] (gold): " << state.getVariable(1) << "\n";
+    out << "Variable[2] (potions): " << state.getVariable(2) << "\n";
+    out << "Switch[1] (slime encounter seen): " << (state.getSwitch(1) ? "true" : "false") << "\n";
+    out << "Map tile(5,5,0): " << map.tileId(5, 5, 0) << "\n";
+    out << "Map region(5,5,0): " << map.regionId(5, 5, 0) << "\n";
+    out << "Map blocked(5,5): " << (map.isBlocked(5, 5) ? "true" : "false") << "\n";
+    out.flush();
 
     return 0;
 }

@@ -858,7 +858,7 @@ void MainWindow::on_toolMakeSelection_toggled(bool on)
 				gvMapEditor->changeZoom(MapView::ZOOM_1TO8);
 		}
 	}
-	else if (!toolDrawRectangle->isChecked() and !toolDrawCircle->isChecked() and !toolBucketFill->isChecked() and !toolPencil->isChecked() and !toolTiling->isChecked())
+	else if (!toolDrawRectangle->isChecked() && !toolDrawCircle->isChecked() && !toolBucketFill->isChecked() && !toolPencil->isChecked() && !toolTiling->isChecked())
 		toolMakeSelection->setChecked(true);
 	else if (!toolTiling->isChecked())
 	{
@@ -891,7 +891,7 @@ void MainWindow::on_toolDrawRectangle_toggled(bool on)
 				gvMapEditor->changeZoom(MapView::ZOOM_1TO8);
 		}
 	}
-	else if (!toolMakeSelection->isChecked() and !toolDrawCircle->isChecked() and !toolBucketFill->isChecked() and !toolPencil->isChecked() and !toolTiling->isChecked())
+	else if (!toolMakeSelection->isChecked() && !toolDrawCircle->isChecked() && !toolBucketFill->isChecked() && !toolPencil->isChecked() && !toolTiling->isChecked())
 		toolDrawRectangle->setChecked(true);
 }
 
@@ -917,7 +917,7 @@ void MainWindow::on_toolDrawCircle_toggled(bool on)
 				gvMapEditor->changeZoom(MapView::ZOOM_1TO8);
 		}
 	}
-	else if (!toolMakeSelection->isChecked() and !toolDrawRectangle->isChecked() and !toolBucketFill->isChecked() and !toolPencil->isChecked() and !toolTiling->isChecked())
+	else if (!toolMakeSelection->isChecked() && !toolDrawRectangle->isChecked() && !toolBucketFill->isChecked() && !toolPencil->isChecked() && !toolTiling->isChecked())
 		toolDrawCircle->setChecked(true);
 }
 
@@ -943,7 +943,7 @@ void MainWindow::on_toolBucketFill_toggled(bool on)
 				gvMapEditor->changeZoom(MapView::ZOOM_1TO8);
 		}
 	}
-	else if (!toolMakeSelection->isChecked() and !toolDrawRectangle->isChecked() and !toolDrawCircle->isChecked() and !toolPencil->isChecked() and !toolTiling->isChecked())
+	else if (!toolMakeSelection->isChecked() && !toolDrawRectangle->isChecked() && !toolDrawCircle->isChecked() && !toolPencil->isChecked() && !toolTiling->isChecked())
 		toolBucketFill->setChecked(true);
 }
 
@@ -969,7 +969,7 @@ void MainWindow::on_toolPencil_toggled(bool on)
 				gvMapEditor->changeZoom(MapView::ZOOM_1TO8);
 		}
 	}
-	else if (!toolMakeSelection->isChecked() and !toolDrawRectangle->isChecked() and !toolDrawCircle->isChecked() and !toolBucketFill->isChecked() and !toolTiling->isChecked())
+	else if (!toolMakeSelection->isChecked() && !toolDrawRectangle->isChecked() && !toolDrawCircle->isChecked() && !toolBucketFill->isChecked() && !toolTiling->isChecked())
 		toolPencil->setChecked(true);
 }
 
@@ -997,7 +997,7 @@ void MainWindow::on_toolTiling_toggled(bool on)
 		gvMapEditor->changeTool(MapView::TOOL_TILING);
 		gvMapEditor->changeZoom(MapView::ZOOM_3TO2);
 	}
-	else if (!toolMakeSelection->isChecked() and !toolDrawRectangle->isChecked() and !toolDrawCircle->isChecked() and !toolBucketFill->isChecked() and !toolPencil->isChecked())
+	else if (!toolMakeSelection->isChecked() && !toolDrawRectangle->isChecked() && !toolDrawCircle->isChecked() && !toolBucketFill->isChecked() && !toolPencil->isChecked())
 		toolTiling->setChecked(true);
 	else
 	{
@@ -1090,7 +1090,7 @@ void MainWindow::on_aZoom_1to1_toggled(bool on)
 		aZoom_1to8->setChecked(false);
 		gvMapEditor->changeZoom(MapView::ZOOM_1TO1);
 	}
-	else if (!aZoom_1to2->isChecked() and !aZoom_1to4->isChecked() and !aZoom_1to8->isChecked())
+	else if (!aZoom_1to2->isChecked() && !aZoom_1to4->isChecked() && !aZoom_1to8->isChecked())
 		aZoom_1to1->setChecked(true);
 }
 
@@ -1103,7 +1103,7 @@ void MainWindow::on_aZoom_1to2_toggled(bool on)
 		aZoom_1to8->setChecked(false);
 		gvMapEditor->changeZoom(MapView::ZOOM_1TO2);
 	}
-	else if (!aZoom_1to1->isChecked() and !aZoom_1to4->isChecked() and !aZoom_1to8->isChecked())
+	else if (!aZoom_1to1->isChecked() && !aZoom_1to4->isChecked() && !aZoom_1to8->isChecked())
 		aZoom_1to2->setChecked(true);
 }
 
@@ -1116,7 +1116,7 @@ void MainWindow::on_aZoom_1to4_toggled(bool on)
 		aZoom_1to8->setChecked(false);
 		gvMapEditor->changeZoom(MapView::ZOOM_1TO4);
 	}
-	else if (!aZoom_1to1->isChecked() and !aZoom_1to2->isChecked() and !aZoom_1to8->isChecked())
+	else if (!aZoom_1to1->isChecked() && !aZoom_1to2->isChecked() && !aZoom_1to8->isChecked())
 		aZoom_1to4->setChecked(true);
 }
 
@@ -1129,7 +1129,7 @@ void MainWindow::on_aZoom_1to8_toggled(bool on)
 		aZoom_1to4->setChecked(false);
 		gvMapEditor->changeZoom(MapView::ZOOM_1TO8);
 	}
-	else if (!aZoom_1to1->isChecked() and !aZoom_1to2->isChecked() and !aZoom_1to4->isChecked())
+	else if (!aZoom_1to1->isChecked() && !aZoom_1to2->isChecked() && !aZoom_1to4->isChecked())
 		aZoom_1to8->setChecked(true);
 }
 
