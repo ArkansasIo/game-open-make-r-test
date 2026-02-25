@@ -19,6 +19,7 @@
 // For urgent inquiries, sending both an email and a message on Discord is highly recommended for a quicker response.
 
 using System.Runtime.CompilerServices;
+using _BaseModule.UI.EditorExtensions;
 using _BaseModule.UI.StatsFeature;
 using _BaseModule.UI.StatsModifier;
 using RPGCreator.SDK.EditorUiService;
@@ -42,5 +43,7 @@ internal static class BaseModuleUi
                 return new StatsModifierManagement(context);
             });
         });
+
+        BaseModuleEditorExtensions.Register(extensionManager);
     }
 }

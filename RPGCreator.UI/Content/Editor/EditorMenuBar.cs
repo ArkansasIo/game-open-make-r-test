@@ -27,6 +27,8 @@ using Avalonia.Input;
 using RPGCreator.SDK;
 using RPGCreator.SDK.EngineService;
 using RPGCreator.SDK.Logging;
+using RPGCreator.SDK.Modules.UIModule;
+using RPGCreator.UI.Content.Editor.Api;
 using RPGCreator.UI.Content.AssetsManage;
 
 namespace RPGCreator.UI.Content.Editor;
@@ -51,15 +53,18 @@ public class EditorMenuBar : UserControl
         };
         
         CreateAssetsManagerMenu();
+        CreateApiMenu();
         CreateUiEditorMenu();
         CreateFileMenu();
         CreateEditMenu();
         CreateHelpMenu();
         _menu.Items.Add(_assetsMgrMenu);
+        _menu.Items.Add(_apiMenu);
         _menu.Items.Add(_uiEditorMenu);
         _menu.Items.Add(_fileMenu);
         _menu.Items.Add(_editMenu);
         _menu.Items.Add(_helpMenu);
+        EditorUiServices.ExtensionManager.ApplyExtensions(UIRegion.EditorMenuBar, this, _menu);
     }
     
     #region MenuItems
@@ -104,6 +109,38 @@ public class EditorMenuBar : UserControl
     }
     private void RegisterUiEditorMenuEvents()
     {
+    }
+    
+    private MenuItem _apiMenu;
+    private MenuItem _apiRpgToolsMenuItem;
+    private void CreateApiMenu()
+    {
+        _apiMenu = new MenuItem() { Header = "API", HotKey = new KeyGesture(Key.F6) };
+        _apiRpgToolsMenuItem = new MenuItem() { Header = "RPG Logic Tools", HotKey = new KeyGesture(Key.F7) };
+        _apiMenu.Items.Add(_apiRpgToolsMenuItem);
+    }
+    private void RegisterApiMenuEvents()
+    {
+        _apiRpgToolsMenuItem.Click += (_, _) =>
+        {
+            var apiWindow = new RpgApiWindow();
+            var owner = TopLevel.GetTopLevel(this) as Window;
+            if (owner is null)
+            {
+                Logger.Error("Unable to find parent window for RPG API tools.");
+                EditorUiServices.NotificationService.Error("Error", "Unable to open RPG API tools window.");
+                return;
+            }
+
+            apiWindow.ShowDialog(owner).ContinueWith(t =>
+            {
+                if (t.IsFaulted)
+                {
+                    Logger.Error("Error showing RPG API tools window: " + t.Exception?.Message);
+                    EditorUiServices.NotificationService.Error("Error", "An error occurred while opening the RPG API tools window.");
+                }
+            });
+        };
     }
 
     private MenuItem _fileMenu;
@@ -280,6 +317,7 @@ public class EditorMenuBar : UserControl
     private void RegisterEvents()
     {
         RegisterAssetsManagerMenuEvents();
+        RegisterApiMenuEvents();
         RegisterUiEditorMenuEvents();
         RegisterFileMenuEvents();
         RegisterEditMenuEvents();

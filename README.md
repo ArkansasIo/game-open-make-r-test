@@ -1,4 +1,17 @@
-﻿# RPGCreator
+﻿## Editor Tools Menu Actions
+
+The editor provides a comprehensive Tools menu for workflow and AI assistance:
+
+### Tools Menu
+- **AI Coding**
+  - Tools.AI.CodeAgent — Open the AI Coding Agent for code generation and refactoring
+  - Tools.AI.DebugAssist — Launch AI-powered debug assistant
+- **Workflow**
+  - Tools.Notes — Open project notes and scratchpad
+  - Tools.CommunityChat — Join the community chat for collaboration
+
+See the full menu and action list in UnrealUI/FEATURES_MENUS_SYSTEMS.md for all editor commands and submenus.
+# RPGCreator
 
 A free, open-source, fully editable RPG engine built with MonoGame.
 
@@ -95,6 +108,13 @@ Contributions, feedback, and ideas are welcome.
 
 - Join Discord for discussion and updates: https://discord.gg/4yfq4NNzs4
 - Open issues for bugs and feature requests
+
+
+## RPGMakerSystems
+
+RPGMakerSystems is a modular set of classes inspired by RPG Maker, included in RPGCreator.Core/RPG. It provides the foundation for map, event, actor, battle, quest, and UI systems, enabling rapid development of RPGs with familiar workflows.
+
+See [RPGMakerSystems.md](RPGCreator.Core/RPG/RPGMakerSystems.md) for documentation, help, and usage examples.
 
 ## Third-Party Licenses
 

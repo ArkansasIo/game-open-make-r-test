@@ -34,6 +34,7 @@ using RPGCreator.Core.Parser.Graph;
 using RPGCreator.Core.Parser.PRATT;
 using RPGCreator.Core.Registry;
 using RPGCreator.Core.Scheduler;
+using RPGCreator.Core.Services;
 using RPGCreator.Core.Types.Editor.Context;
 using RPGCreator.Core.Types.Map.Layers.AutoLayer;
 using RPGCreator.SDK;
@@ -157,6 +158,7 @@ namespace RPGCreator.Core
             EngineServices.ECS = new EcsService();
             EngineServices.InputsService = new InputsService();
             EngineServices.ModulePathResolver = new ModulePathResolver();
+            EngineServices.RpgSystems = new RpgSystemsService();
 
             Logger.Warning("---");
             Logger.Warning("NORMAL WARNING: The warning below can be ignored!");
@@ -288,6 +290,34 @@ namespace RPGCreator.Core
             Logger.Critical("Failed to resolve main map with ID: {MapId}", args: mainMapId);
             return (false, Ulid.Empty);
 
+        }
+
+        public static void InitializeColorPalettes()
+        {
+            var lightPalette = new ColorPalette("Light")
+            {
+                Colors = new Dictionary<string, System.Drawing.Color>
+                {
+                    {"Background", System.Drawing.Color.White},
+                    {"Foreground", System.Drawing.Color.Black},
+                    {"Accent", System.Drawing.Color.DeepSkyBlue},
+                    {"Highlight", System.Drawing.Color.LightYellow}
+                }
+            };
+
+            var darkPalette = new ColorPalette("Dark")
+            {
+                Colors = new Dictionary<string, System.Drawing.Color>
+                {
+                    {"Background", System.Drawing.Color.FromArgb(30, 30, 30)},
+                    {"Foreground", System.Drawing.Color.WhiteSmoke},
+                    {"Accent", System.Drawing.Color.MediumPurple},
+                    {"Highlight", System.Drawing.Color.DarkSlateGray}
+                }
+            };
+
+            PaletteManager.RegisterPalette(lightPalette);
+            PaletteManager.RegisterPalette(darkPalette);
         }
 
 

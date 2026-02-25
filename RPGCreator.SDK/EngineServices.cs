@@ -245,6 +245,12 @@ public static class EngineServices
         set => RegisterService(value);
     }
 
+    public static IRpgSystemsService RpgSystems
+    {
+        get => GetService<IRpgSystemsService>();
+        set => RegisterService(value);
+    }
+
     /// <summary>
     /// Checks if a service is ready (registered) in the runtime services provider.
     /// </summary>
